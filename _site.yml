@@ -1,8 +1,12 @@
-name: "my-website"
+name: "Jennifer Bufton"
+output_dir: "."
 navbar:
-  title: "My Website"
+  title: "Jennifer Bufton"
   left:
     - text: "Home"
       href: index.html
     - text: "About"
       href: about.html
+output:
+  html_document:
+    theme: paper
