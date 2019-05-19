@@ -4,3 +4,29 @@ title: "about"
 
 <div style="text-align:center"><span style="color:black; font-family:Norwester; font-size:2em;">How to create a chloropleth map</span></div>
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(ggplot2)
+library(extrafont)
+library(scales)
+```
+
+
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+se_colour<- c("#bdd7e7", "#6baed6", "#3182bd", "#08519c")
+la.map <- read.csv( "input/PowerBImap.csv")
+
+ggplot() +
+  geom_polygon(data = la.map, aes(x = long, y = lat, group = group, fill = Total.Active.breaks, label = lad17nm))+
+  theme_minimal() + 
+  theme(axis.title.x = element_blank(),axis.title.y = element_blank(), 
+        text = element_text(family = "Norwester", color = "#5F5F5F"), 
+        plot.title=element_text(size=14,family = "Norwester", face="bold", hjust = 0.5),
+        panel.grid = element_blank(), 
+        axis.text = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.position = "bottom") +
+  labs(title = "Total Adults (16+) Active (150 Minutes +)\n by Local Authority") +
+  scale_fill_manual(values = se_colour, name = "Active\n% Breaks")
+```
+
