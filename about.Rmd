@@ -1,5 +1,5 @@
 ---
-title: "Map Example"
+title: "about"
 ---
 
 <div style="text-align:center"><span style="color:black; font-family:Norwester; font-size:2em;">How to create a chloropleth map</span></div>
