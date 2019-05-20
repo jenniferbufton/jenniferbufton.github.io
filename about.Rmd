@@ -2,7 +2,7 @@
 title: "about"
 ---
 
-<div style="text-align:center"><span style="color:black; font-family:Norwester; font-size:2em;">How to create a chloropleth map</span></div>
+<div style="text-align:center"><span style="color:black; font-family:Norwester; font-size:2em;">A choropleth map</span></div>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -26,7 +26,7 @@ ggplot() +
         axis.text = element_blank(),
         axis.ticks.x = element_blank(),
         legend.position = "bottom") +
-  labs(title = "Total Adults (16+) Active (150 Minutes +)\n by Local Authority") +
+  labs(title = "Total Adults (16+) Active (150 Minutes +)\n by Local Authority", caption = "Sport England: Active Lives Survey 2017/2018") +
   scale_fill_manual(values = se_colour, name = "Active\n% Breaks")
 ```
 
