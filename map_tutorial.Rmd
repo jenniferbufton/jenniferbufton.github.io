@@ -52,9 +52,9 @@ map.df <- map.df[grep("E", map.df$lad17cd),] # England only
 map.df <- map.df[, !duplicated(colnames(map.df))] # remove dupe cols
 ```
 
-We now have a dataframe that we can use with the (magnificent) ggplot2. Full disclosure, I heart ggplot2. Here is an excellent cheatsheet which I have found useful on many occasions:
+We now have a dataframe that we can use with the (magnificent) ggplot2. Full disclosure, I heart ggplot2. Here is an excellent [cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf) which I have found useful on many occasions:
 
-<a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf"><img src="images/Screenshot.png"></a> 
+<center><img src="images/Screenshot.png" width = "400"></center>
 </br>
 </br>
 <div style="text-align:left"><span style="color:black; font-family:Corbel; font-size:1.5em;">Step 4: ggplot!</span></div>

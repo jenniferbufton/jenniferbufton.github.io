@@ -350,8 +350,11 @@ map.df     &lt;- join(map.df,map@data, by=&quot;id&quot;)  #join
 
 map.df &lt;- map.df[grep(&quot;E&quot;, map.df$lad17cd),] # England only
 map.df &lt;- map.df[, !duplicated(colnames(map.df))] # remove dupe cols</code></pre>
-<p>We now have a dataframe that we can use with the (magnificent) ggplot2. Full disclosure, I heart ggplot2. Here is an excellent cheatsheet which I have found useful on many occasions:</p>
-<a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf"><img src="images/Screenshot.png"></a> </br> </br>
+<p>We now have a dataframe that we can use with the (magnificent) ggplot2. Full disclosure, I heart ggplot2. Here is an excellent <a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">cheatsheet</a> which I have found useful on many occasions:</p>
+<center>
+<img src="images/Screenshot.png" width = "400">
+</center>
+</br> </br>
 <div style="text-align:left">
 <span style="color:black; font-family:Corbel; font-size:1.5em;">Step 4: ggplot!</span>
 </div>
