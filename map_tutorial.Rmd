@@ -54,7 +54,7 @@ map.df <- map.df[, !duplicated(colnames(map.df))] # remove dupe cols
 
 We now have a dataframe that we can use with the (magnificent) ggplot2. Full disclosure, I heart ggplot2. Here is an excellent [cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf) which I have found useful on many occasions:
 
-<center><img src="images/Screenshot.png" width = "400"></center>
+<center><img src="images/Screenshot.jpg" width = "400"></center>
 </br>
 </br>
 <div style="text-align:left"><span style="color:black; font-family:Corbel; font-size:1.5em;">Step 4: ggplot!</span></div>
