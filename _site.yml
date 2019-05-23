@@ -6,7 +6,7 @@ navbar:
     - text: "Home"
       href: index.html
     - text: "Map Tutorial"
-      href: about.html
+      href: map_tutorial.html
 output:
   html_document:
     theme: paper

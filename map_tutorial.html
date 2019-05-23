@@ -287,7 +287,7 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="about.html">Map Tutorial</a>
+  <a href="map_tutorial.html">Map Tutorial</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -306,42 +306,38 @@ $(document).ready(function () {
 </div>
 
 
-<p>This is a brief overview on how to create custom choropleth maps in R using Shapefiles.</p>
+<p>This is a brief overview on how to create custom choropleth maps in R using Shapefiles. Some basic knowledge of R is assumed.</p>
 <div style="text-align:left">
-<span style="color:black; font-family:Norwester; font-size:1.5em;">Step 1: Load the libraries</span>
+<span style="color:black; font-family:Corbel; font-size:1.5em;">Step 1: Load the libraries</span>
 </div>
-<p>install the following if necessary:</p>
 <pre class="r"><code>library(ggplot2) # Our favourite grammar of graphics to create the map
 library(rgdal) # turning a shapefile into a dataframe
-library(plyr) # for &quot;join&quot; function
-library(extrafont) # for custom fonts</code></pre>
+library(plyr) # for &quot;join&quot; function</code></pre>
 <div style="text-align:left">
-<span style="color:black; font-family:Norwester; font-size:1.5em;">Step 2: Get your data</span>
+<span style="color:black; font-family:Corbel; font-size:1.5em;">Step 2: Get your data</span>
 </div>
 You will need:
 </p>
 <ol style="list-style-type: lower-alpha">
 <li>The data you want to map
 </p></li>
-<li>A Shapefile (which is an amalgamation of several files containing geospatial data). See <a href="https://doc.arcgis.com/en/arcgis-online/reference/shapefiles.htm">here</a> for more information about Shapefiles.
-</p>
-The aim of the game is to convert the Shapefile into a dataframe, and join with the data you wish to map (NB to do this you will need to have a common column, e.g. a Local Authority code)</li>
+<li>A Shapefile (which is an amalgamation of several files containing geospatial data). See <a href="https://doc.arcgis.com/en/arcgis-online/reference/shapefiles.htm">here</a> for more information about Shapefiles. </br> The aim of the game is to convert the Shapefile into a dataframe, and join with the data you wish to map. In order to do this, you will need to have a common variable (e.g. a Local Authority code)</li>
 </ol>
-In this example, we are going to use Active Lives Survey data from the Sport England Active Lives dataset (datasets available on the <a href="https://beta.ukdataservice.ac.uk/datacatalogue/studies/#!?Search=active%20lives%20survey&amp;Page=1&amp;Rows=10&amp;Sort=1&amp;DateFrom=440&amp;DateTo=2019">UK Data Archive</a>). This data goes down to a Local Authority level (England only).
+In this example, we are going to use Active Lives Survey data from the Sport England Active Lives dataset (datasets available on the <a href="https://beta.ukdataservice.ac.uk/datacatalogue/studies/#!?Search=active%20lives%20survey&amp;Page=1&amp;Rows=10&amp;Sort=1&amp;DateFrom=440&amp;DateTo=2019">UK Data Archive</a>). This data goes down to a Local Authority level (England only). The entire dataset is available as an spss file, but I have converted the query output (Local Authority by Activity Level) to .csv.
 </p>
 <p>We will use the Shapefile from <a href="https://data.gov.uk/dataset/45a1aaed-503a-4259-bd3e-27ce2ddc7b16/local-authority-districts-december-2016-super-generalised-clipped-boundaries-in-the-uk">data.gov.uk</a>. This contains data beyond our interest (i.e. beyond England) so we will need to do a bit of data cleaning once we have created our joined dataframe.</p>
 <div style="text-align:left">
-<span style="color:black; font-family:Norwester; font-size:1.5em;">Step 3: Read in your data</span>
+<span style="color:black; font-family:Corbel; font-size:1.5em;">Step 3: Read in your data</span>
 </div>
-<p>We now read in our csv file of Active Lives data:</p>
+<p>We now read in our csv file of Active Lives data.</p>
 <pre class="r"><code>df &lt;- read.csv(&quot;input/Active_Lives_Data.csv&quot;, header = TRUE) # read in the file and keep the headers
 
-df[1,c(1:6)] # cheeky peek at the first row of data to check </code></pre>
+df[1,c(1:6)] # cheeky peek at the first row and first few columns of data to check </code></pre>
 <pre><code>##   X   lad17cd    lad17nm Age.16..Respondents Age.16..Inactive
 ## 1 1 E06000001 Hartlepool                 477            0.343
 ##   Age.16..Fairly.Active
 ## 1                 0.104</code></pre>
-<p>And then use the <strong>rgdal</strong> package to read in the Shapefile. It is here we can remove extraneous data (anything not in England) by using <em>grep</em> (regular expression) function on the Local Authority code column (aka “lad17cd”).</p>
+<p>Use the <strong>rgdal</strong> package to read in the Shapefile. After it has been read in, joined with the Active Lives data, and converted to a dataframe, we can remove extraneous data (anything not in England) by using <em>grep</em> (regular expression) function on the Local Authority code column (aka “lad17cd”).</p>
 <pre class="r"><code>setwd(&quot;input/Shapefile&quot;)
 map &lt;- readOGR(dsn = &quot;.&quot;, layer = &quot;Local_Authority_Districts_December_2017_Super_Generalised_Clipped_Boundaries_in_Great_Britain&quot;, verbose = FALSE)
 #summary(map) # see if projections used if necessary
@@ -354,26 +350,26 @@ map.df     &lt;- join(map.df,map@data, by=&quot;id&quot;)  #join
 
 map.df &lt;- map.df[grep(&quot;E&quot;, map.df$lad17cd),] # England only
 map.df &lt;- map.df[, !duplicated(colnames(map.df))] # remove dupe cols</code></pre>
-<p>We now have a dataframe that we can use with the magnificent ggplot2!</p>
+We now have a dataframe that we can use with the (magnificent) ggplot2. Full disclosure, I heart ggplot2. Here is an excellent cheatsheet which I have found useful on many occasions: <a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf"><img src="images/Screenshot.png" alt="Alt Text" /></a> </br> </br>
 <div style="text-align:left">
-<span style="color:black; font-family:Norwester; font-size:1.5em;">Step 4: ggplot!</span>
+<span style="color:black; font-family:Corbel; font-size:1.5em;">Step 4: ggplot!</span>
 </div>
-<p>We can use <em>geom_polygon</em> to create our map, and strip out axes, gridlines etc. using <em>theme</em></p>
+<p>We can use <em>geom_polygon</em> to create our map, and strip out axes, gridlines etc. using <em>theme</em>.</p>
 <pre class="r"><code>se_colour&lt;- c(&quot;#bdd7e7&quot;, &quot;#6baed6&quot;, &quot;#3182bd&quot;, &quot;#08519c&quot;) # custom colours to use in the chart
 
 ggplot() +
   geom_polygon(data = map.df, aes(x = long, y = lat, group = group, fill = Total.Active.breaks))+
   theme_minimal() + 
   theme(axis.title.x = element_blank(),axis.title.y = element_blank(), 
-        text = element_text(family = &quot;Norwester&quot;, color = &quot;#5F5F5F&quot;), 
-        plot.title=element_text(size=14,family = &quot;Norwester&quot;, face=&quot;bold&quot;, hjust = 0.5),
+        text = element_text(family = &quot;Corbel&quot;, color = &quot;#5F5F5F&quot;), 
+        plot.title=element_text(size=14,family = &quot;Corbel&quot;, face=&quot;bold&quot;, hjust = 0.5),
         panel.grid = element_blank(), # remove all axes and gridlines
         axis.text = element_blank(),
         axis.ticks.x = element_blank(),
         legend.position = &quot;bottom&quot;) +
   labs(title = &quot;Adults (16+) who are active (150 Minutes and over per week)\n by Local Authority&quot;, caption = &quot;Sport England: Active Lives Survey 2017/2018&quot;) +
   scale_fill_manual(values = se_colour, name = &quot;Active\n% Breaks&quot;)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="map_tutorial_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 
 
 
