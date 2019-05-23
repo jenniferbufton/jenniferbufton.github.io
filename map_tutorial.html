@@ -350,7 +350,7 @@ map.df     &lt;- join(map.df,map@data, by=&quot;id&quot;)  #join
 
 map.df &lt;- map.df[grep(&quot;E&quot;, map.df$lad17cd),] # England only
 map.df &lt;- map.df[, !duplicated(colnames(map.df))] # remove dupe cols</code></pre>
-We now have a dataframe that we can use with the (magnificent) ggplot2. Full disclosure, I heart ggplot2. Here is an excellent cheatsheet which I have found useful on many occasions: <a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf"><img src="images/Screenshot.png" alt="Alt Text" /></a> </br> </br>
+We now have a dataframe that we can use with the (magnificent) ggplot2. Full disclosure, I heart ggplot2. Here is an excellent cheatsheet which I have found useful on many occasions: <a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf"><img src="Screenshot.png" alt="Alt Text" /></a> </br> </br>
 <div style="text-align:left">
 <span style="color:black; font-family:Corbel; font-size:1.5em;">Step 4: ggplot!</span>
 </div>
@@ -362,7 +362,7 @@ ggplot() +
   theme_minimal() + 
   theme(axis.title.x = element_blank(),axis.title.y = element_blank(), 
         text = element_text(family = &quot;Corbel&quot;, color = &quot;#5F5F5F&quot;), 
-        plot.title=element_text(size=14,family = &quot;Corbel&quot;, face=&quot;bold&quot;, hjust = 0.5),
+        plot.title=element_text(size=12,family = &quot;Corbel&quot;, face=&quot;bold&quot;, hjust = 0.5),
         panel.grid = element_blank(), # remove all axes and gridlines
         axis.text = element_blank(),
         axis.ticks.x = element_blank(),

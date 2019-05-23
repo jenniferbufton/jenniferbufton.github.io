@@ -53,7 +53,7 @@ map.df <- map.df[, !duplicated(colnames(map.df))] # remove dupe cols
 ```
 
 We now have a dataframe that we can use with the (magnificent) ggplot2. Full disclosure, I heart ggplot2. Here is an excellent cheatsheet which I have found useful on many occasions:
-[![Alt Text](images/Screenshot.png)](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf)
+[![Alt Text](Screenshot.png)](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf)
 </br>
 </br>
 <div style="text-align:left"><span style="color:black; font-family:Corbel; font-size:1.5em;">Step 4: ggplot!</span></div>
@@ -67,7 +67,7 @@ ggplot() +
   theme_minimal() + 
   theme(axis.title.x = element_blank(),axis.title.y = element_blank(), 
         text = element_text(family = "Corbel", color = "#5F5F5F"), 
-        plot.title=element_text(size=14,family = "Corbel", face="bold", hjust = 0.5),
+        plot.title=element_text(size=12,family = "Corbel", face="bold", hjust = 0.5),
         panel.grid = element_blank(), # remove all axes and gridlines
         axis.text = element_blank(),
         axis.ticks.x = element_blank(),
