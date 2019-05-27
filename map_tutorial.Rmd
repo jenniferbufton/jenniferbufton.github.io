@@ -4,7 +4,7 @@ title: "Making Maps"
 
 This is a brief overview on how to create custom choropleth maps in R using Shapefiles. Some basic knowledge of R is assumed.
 
-<div style="text-align:left"><span style="color:black; font-family:Corbel; font-size:1.5em;">Step 1: Load the libraries</span></div>
+<div style="text-align:left"><span style="color:black; font-size:1em;">Step 1: Load the libraries</span></div>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -16,18 +16,19 @@ library(rgdal) # turning a shapefile into a dataframe
 library(plyr) # for "join" function
 ```
 
-<div style="text-align:left"><span style="color:black; font-family:Corbel; font-size:1.5em;">Step 2: Get your data</span></div>
+<div style="text-align:left"><span style="color:black; font-size:1em;">Step 2: Get your data</span></div>
 
 You will need: </p>
 a) The data you want to map </p>
-b) A Shapefile (which is an amalgamation of several files containing geospatial data). See [here](https://doc.arcgis.com/en/arcgis-online/reference/shapefiles.htm) for more information about Shapefiles.
-</br>
+b) A Shapefile (which is an amalgamation of several files containing geospatial data). See [here](https://doc.arcgis.com/en/arcgis-online/reference/shapefiles.htm) for more information about Shapefiles.</p>
+
+
 The aim of the game is to convert the Shapefile into a dataframe, and join with the data you wish to map. In order to do this, you will need to have a common variable (e.g. a Local Authority code)
 
 In this example, we are going to use Active Lives Survey data from the Sport England Active Lives dataset (datasets available on the [UK Data Archive](https://beta.ukdataservice.ac.uk/datacatalogue/studies/#!?Search=active%20lives%20survey&Page=1&Rows=10&Sort=1&DateFrom=440&DateTo=2019)). This data goes down to a Local Authority level (England only). The entire dataset is available as an spss file, but I have converted the query output (Local Authority by Activity Level) to .csv.</p> 
 We will use the Shapefile from [data.gov.uk](https://data.gov.uk/dataset/45a1aaed-503a-4259-bd3e-27ce2ddc7b16/local-authority-districts-december-2016-super-generalised-clipped-boundaries-in-the-uk). This contains data beyond our interest (i.e. beyond England) so we will need to do a bit of data cleaning once we have created our joined dataframe.
 
-<div style="text-align:left"><span style="color:black; font-family:Corbel; font-size:1.5em;">Step 3: Read in your data</span></div>
+<div style="text-align:left"><span style="color:black; font-size:1em;">Step 3: Read in your data</span></div>
 We now read in our csv file of Active Lives data.
 ```{r}
 df <- read.csv("input/Active_Lives_Data.csv", header = TRUE) # read in the file and keep the headers
@@ -52,12 +53,9 @@ map.df <- map.df[grep("E", map.df$lad17cd),] # England only
 map.df <- map.df[, !duplicated(colnames(map.df))] # remove dupe cols
 ```
 
-We now have a dataframe that we can use with the (magnificent) ggplot2. Full disclosure, I heart ggplot2. Here is an excellent [cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf) which I have found useful on many occasions:
-
-<center><img src="images/Screenshot.jpg" width = "400"></center>
-</br>
-</br>
-<div style="text-align:left"><span style="color:black; font-family:Corbel; font-size:1.5em;">Step 4: ggplot!</span></div>
+We now have a dataframe that we can use with the (magnificent) ggplot2. Here is an excellent ggplot2 [cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf) which I have found useful on many occasions.
+<br/>
+<div style="text-align:left"><span style="color:black; font-size:1em;">Step 4: ggplot!</span></div>
 We can use *geom_polygon* to create our map, and strip out axes, gridlines etc. using  *theme*.
 
 ```{r echo=TRUE, fig.align='center', message=FALSE, warning=FALSE}
@@ -67,13 +65,14 @@ ggplot() +
   geom_polygon(data = map.df, aes(x = long, y = lat, group = group, fill = Total.Active.breaks))+
   theme_minimal() + 
   theme(axis.title.x = element_blank(),axis.title.y = element_blank(), 
-        text = element_text(family = "Corbel", color = "#5F5F5F"), 
-        plot.title=element_text(size=12,family = "Corbel", face="bold", hjust = 0.5),
+        text = element_text(color = "#5F5F5F"), 
+        plot.title=element_text(size=12, face="bold"),
         panel.grid = element_blank(), # remove all axes and gridlines
         axis.text = element_blank(),
         axis.ticks.x = element_blank(),
         legend.position = "bottom") +
-  labs(title = "Adults (16+) who are active (150 Minutes and over per week)\n by Local Authority", caption = "Sport England: Active Lives Survey 2017/2018") +
+  labs(caption = "Sport England: Active Lives Survey 2017/2018") +
+  ggtitle("Adults (16+) who are active", subtitle = "150 Minutes and over per week, by Local Authority")+
   scale_fill_manual(values = se_colour, name = "Active\n% Breaks")
 ```
 
