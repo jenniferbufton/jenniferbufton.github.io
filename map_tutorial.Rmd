@@ -53,8 +53,8 @@ map.df <- map.df[grep("E", map.df$lad17cd),] # England only
 map.df <- map.df[, !duplicated(colnames(map.df))] # remove dupe cols
 ```
 
-We now have a dataframe that we can use with the (magnificent) ggplot2. Here is an excellent ggplot2 [cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf) which I have found useful on many occasions.
-<br/>
+We now have a dataframe that we can use with the (magnificent) ggplot2. Here is an excellent ggplot2 [cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf) which I have found useful on many occasions. </p>
+
 <div style="text-align:left"><span style="color:black; font-size:1em;">Step 4: ggplot!</span></div>
 We can use *geom_polygon* to create our map, and strip out axes, gridlines etc. using  *theme*.
 
