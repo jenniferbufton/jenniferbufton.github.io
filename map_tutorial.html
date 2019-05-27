@@ -285,11 +285,36 @@ $(document).ready(function () {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li>
-  <a href="index.html">Home</a>
-</li>
+        <li class="dropdown-header">Home</li>
 <li>
-  <a href="map_tutorial.html">Map Tutorial</a>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Map Tutorial
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Tutorials</li>
+    <li>
+      <a href="map_tutorial.html">Map Tutorial</a>
+    </li>
+    <li>
+      <a href="index.html">Page B</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Heading 2</li>
+    <li>
+      <a href="index.html">Page C</a>
+    </li>
+    <li>
+      <a href="index.html">Page D</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

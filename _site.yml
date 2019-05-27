@@ -3,10 +3,22 @@ output_dir: "."
 navbar:
   title: "Jennifer Bufton"
   left:
-    - text: "Home"
+    - icon: fa-home
       href: index.html
-    - text: "Map Tutorial"
+    - text: "Tutorials"
       href: map_tutorial.html
+      menu:
+        - text: "Visualisations"
+        - text: "Choropleth Map"
+          href: map_tutorial.html
+        - text: "Leaflet Map"
+          href: Leaflet.html
+        - text: "---------"
+        - text: "Wrangling"
+        - text: "Page C"
+          href: index.html
+        - text: "Page D"
+          href: index.html
   right:
     - icon: fa-github fa-lg
       href: http://github.com/jenniferbufton
