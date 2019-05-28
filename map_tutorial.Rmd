@@ -23,7 +23,7 @@ a) The data you want to map </p>
 b) A Shapefile (which is an amalgamation of several files containing geospatial data). See [here](https://doc.arcgis.com/en/arcgis-online/reference/shapefiles.htm) for more information about Shapefiles.</p>
 
 
-The aim of the game is to convert the Shapefile into a dataframe, and join with the data you wish to map. In order to do this, you will need to have a common variable (e.g. a Local Authority code)
+The aim of the game is to convert the Shapefile into a dataframe, and join with the data you wish to map. In order to do this, you will need to have a variable common to both the dataset and the Shapefile (e.g. a Local Authority code).
 
 In this example, we are going to use Active Lives Survey data from the Sport England Active Lives dataset (datasets available on the [UK Data Archive](https://beta.ukdataservice.ac.uk/datacatalogue/studies/#!?Search=active%20lives%20survey&Page=1&Rows=10&Sort=1&DateFrom=440&DateTo=2019)). This data goes down to a Local Authority level (England only). The entire dataset is available as an spss file, but I have converted the query output (Local Authority by Activity Level) to .csv.</p> 
 We will use the Shapefile from [data.gov.uk](https://data.gov.uk/dataset/45a1aaed-503a-4259-bd3e-27ce2ddc7b16/local-authority-districts-december-2016-super-generalised-clipped-boundaries-in-the-uk). This contains data beyond our interest (i.e. beyond England) so we will need to do a bit of data cleaning once we have created our joined dataframe.
