@@ -13,6 +13,8 @@ navbar:
           href: map_tutorial.html
         - text: "Leaflet Map"
           href: Leaflet.html
+        - text: "Collapsible Tree"
+          href: tree.html
         - text: "---------"
         - text: "Wrangling"
         - text: "Page C"

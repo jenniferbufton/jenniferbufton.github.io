@@ -1,0 +1,19 @@
+---
+title: "Collapsible Tree using PHE Indicators"
+
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(fingertipsR)
+library(collapsibleTree)
+library(RColorBrewer)
+fingertips.df <- indicators()
+
+```
+
+
+```{r cars}
+collapsibleTree(linkLength = 200, fingertips.df, hierarchy = c("ProfileName", "DomainName", "IndicatorName"), height = 1000, width = 1200, tooltip = TRUE, fillByLevel = TRUE)
+```

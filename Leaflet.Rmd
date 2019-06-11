@@ -33,7 +33,7 @@ newdata3 <- newdata2$geo
 
 #bind dataframes
 newdata4 <- cbind(newdata1, newdata3)
-newdata4 <- newdata4[c(2, 14, 26, 23, 34, 35)]
+newdata4 <- newdata4[c(2, 14, 27, 23, 35, 36)]
 
 #rename Gender categories
 newdata4$genderRestriction[newdata4$genderRestriction == "https://openactive.io/FemaleOnly"] <- "Women-only Session"
