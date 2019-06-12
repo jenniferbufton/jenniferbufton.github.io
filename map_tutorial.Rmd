@@ -37,7 +37,7 @@ df[1,c(1:6)] # cheeky peek at the first row and first few columns of data to che
 
 ```
 
-Use the **rgdal** package to read in the Shapefile. The **readOGR** function retains projections used (more information on using projections with **ggplot** [here](https://ggplot2.tidyverse.org/reference/coord_map.html)). 
+Use the **rgdal** package to read in the Shapefile. The *readOGR* function retains projections used (more information on using projections with **ggplot** [here](https://ggplot2.tidyverse.org/reference/coord_map.html)). 
 
 After it has been read in, joined with the Active Lives data, and converted to a dataframe,  we can remove extraneous data (anything not in England) by using *grep* (regular expression) function on the Local Authority code column (aka "lad17cd").
 ```{r echo=TRUE, , fig.align='left',message=FALSE, warning=FALSE}
@@ -55,7 +55,7 @@ map.df <- map.df[grep("E", map.df$lad17cd),] # England only
 map.df <- map.df[, !duplicated(colnames(map.df))] # remove dupe cols
 ```
 
-We now have a dataframe that we can use with the (magnificent) ggplot2. Here is an excellent ggplot2 [cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf) which I have found useful on many occasions. </p>
+We now have a dataframe that we can use with ggplot2. Here is an excellent ggplot [cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf). </p>
 
 <div style="text-align:left"><span style="color:black; font-size:1em;">Step 4: ggplot!</span></div>
 We can use *geom_polygon* to create our map, and strip out axes, gridlines etc. using  *theme*.

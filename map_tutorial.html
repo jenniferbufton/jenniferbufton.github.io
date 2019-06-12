@@ -386,7 +386,7 @@ df[1,c(1:6)] # cheeky peek at the first row and first few columns of data to che
 ## 1 1 E06000001 Hartlepool                 477            0.343
 ##   Age.16..Fairly.Active
 ## 1                 0.104</code></pre>
-<p>Use the <strong>rgdal</strong> package to read in the Shapefile. The <strong>readOGR</strong> function retains projections used (more information on using projections with <strong>ggplot</strong> <a href="https://ggplot2.tidyverse.org/reference/coord_map.html">here</a>).</p>
+<p>Use the <strong>rgdal</strong> package to read in the Shapefile. The <em>readOGR</em> function retains projections used (more information on using projections with <strong>ggplot</strong> <a href="https://ggplot2.tidyverse.org/reference/coord_map.html">here</a>).</p>
 <p>After it has been read in, joined with the Active Lives data, and converted to a dataframe, we can remove extraneous data (anything not in England) by using <em>grep</em> (regular expression) function on the Local Authority code column (aka “lad17cd”).</p>
 <pre class="r"><code>setwd(&quot;input/Shapefile&quot;)
 map &lt;- readOGR(dsn = &quot;.&quot;, layer = &quot;Local_Authority_Districts_December_2017_Super_Generalised_Clipped_Boundaries_in_Great_Britain&quot;, verbose = FALSE)
@@ -400,7 +400,7 @@ map.df     &lt;- join(map.df,map@data, by=&quot;id&quot;)  #join
 
 map.df &lt;- map.df[grep(&quot;E&quot;, map.df$lad17cd),] # England only
 map.df &lt;- map.df[, !duplicated(colnames(map.df))] # remove dupe cols</code></pre>
-We now have a dataframe that we can use with the (magnificent) ggplot2. Here is an excellent ggplot2 <a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">cheatsheet</a> which I have found useful on many occasions.
+We now have a dataframe that we can use with ggplot2. Here is an excellent ggplot <a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">cheatsheet</a>.
 </p>
 <div style="text-align:left">
 <span style="color:black; font-size:1em;">Step 4: ggplot!</span>
