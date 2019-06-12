@@ -17,5 +17,5 @@ df <- read.csv("input/Navigating Active Lives Adult dataset - Activities.csv")
 
 
 ```{r al}
-collapsibleTree(linkLength = 200, df, hierarchy = c("Broad.Activity.Categories", "Activities", "Disciplines"), height = 800, width = 1200, tooltip = TRUE, fillByLevel = TRUE)
+collapsibleTree(linkLength = 200, df, hierarchy = c("Broad.Activity.Categories", "Activities", "Disciplines"), height = 1200, width = 1200, tooltip = TRUE, fillByLevel = TRUE)
 ```
