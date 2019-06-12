@@ -386,11 +386,12 @@ df[1,c(1:6)] # cheeky peek at the first row and first few columns of data to che
 ## 1 1 E06000001 Hartlepool                 477            0.343
 ##   Age.16..Fairly.Active
 ## 1                 0.104</code></pre>
-<p>Use the <strong>rgdal</strong> package to read in the Shapefile. After it has been read in, joined with the Active Lives data, and converted to a dataframe, we can remove extraneous data (anything not in England) by using <em>grep</em> (regular expression) function on the Local Authority code column (aka “lad17cd”).</p>
+<p>Use the <strong>rgdal</strong> package to read in the Shapefile. The <strong>readOGR</strong> function retains projections used (more information on using projections with <strong>ggplot</strong> <a href="https://ggplot2.tidyverse.org/reference/coord_map.html">here</a>).</p>
+<p>After it has been read in, joined with the Active Lives data, and converted to a dataframe, we can remove extraneous data (anything not in England) by using <em>grep</em> (regular expression) function on the Local Authority code column (aka “lad17cd”).</p>
 <pre class="r"><code>setwd(&quot;input/Shapefile&quot;)
 map &lt;- readOGR(dsn = &quot;.&quot;, layer = &quot;Local_Authority_Districts_December_2017_Super_Generalised_Clipped_Boundaries_in_Great_Britain&quot;, verbose = FALSE)
-#summary(map) # see if projections used if necessary
-# head(map@data) # check read in
+#summary(map) - see if projections used (if necessary)
+# head(map@data) - check read in (if necessary)
 
 map@data$id &lt;- rownames(map@data)
 map@data   &lt;- join(map@data, df, by=&quot;lad17cd&quot;) #join
@@ -420,7 +421,7 @@ ggplot() +
   labs(caption = &quot;Sport England: Active Lives Survey 2017/2018&quot;) +
   ggtitle(&quot;Adults (16+) who are active&quot;, subtitle = &quot;150 Minutes and over per week, by Local Authority&quot;)+
   scale_fill_manual(values = se_colour, name = &quot;Active\n% Breaks&quot;)</code></pre>
-<p><img src="map_tutorial_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="map_tutorial_files/figure-html/unnamed-chunk-4-1.png" width="480" style="display: block; margin: auto;" /></p>
 
 
 

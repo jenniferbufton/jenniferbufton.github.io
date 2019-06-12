@@ -37,12 +37,14 @@ df[1,c(1:6)] # cheeky peek at the first row and first few columns of data to che
 
 ```
 
-Use the **rgdal** package to read in the Shapefile. After it has been read in, joined with the Active Lives data, and converted to a dataframe,  we can remove extraneous data (anything not in England) by using *grep* (regular expression) function on the Local Authority code column (aka "lad17cd").
-```{r echo=TRUE, message=FALSE, warning=FALSE}
+Use the **rgdal** package to read in the Shapefile. The **readOGR** function retains projections used (more information on using projections with **ggplot** [here](https://ggplot2.tidyverse.org/reference/coord_map.html)). 
+
+After it has been read in, joined with the Active Lives data, and converted to a dataframe,  we can remove extraneous data (anything not in England) by using *grep* (regular expression) function on the Local Authority code column (aka "lad17cd").
+```{r echo=TRUE, , fig.align='left',message=FALSE, warning=FALSE}
 setwd("input/Shapefile")
 map <- readOGR(dsn = ".", layer = "Local_Authority_Districts_December_2017_Super_Generalised_Clipped_Boundaries_in_Great_Britain", verbose = FALSE)
-#summary(map) # see if projections used if necessary
-# head(map@data) # check read in
+#summary(map) - see if projections used (if necessary)
+# head(map@data) - check read in (if necessary)
 
 map@data$id <- rownames(map@data)
 map@data   <- join(map@data, df, by="lad17cd") #join
@@ -58,7 +60,7 @@ We now have a dataframe that we can use with the (magnificent) ggplot2. Here is 
 <div style="text-align:left"><span style="color:black; font-size:1em;">Step 4: ggplot!</span></div>
 We can use *geom_polygon* to create our map, and strip out axes, gridlines etc. using  *theme*.
 
-```{r echo=TRUE, fig.align='center', message=FALSE, warning=FALSE}
+```{r echo=TRUE, message=FALSE, fig.align='center', warning=FALSE, fig.height= 6, fig.width=5}
 se_colour<- c("#bdd7e7", "#6baed6", "#3182bd", "#08519c") # custom colours to use in the chart
 
 ggplot() +
