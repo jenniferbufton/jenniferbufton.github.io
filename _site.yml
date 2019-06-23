@@ -21,6 +21,9 @@ navbar:
           href: index.html
         - text: "Page D"
           href: index.html
+    - icon: fa-book
+      href: Cookbook.html
+    
   right:
     - icon: fa-github fa-lg
       href: http://github.com/jenniferbufton

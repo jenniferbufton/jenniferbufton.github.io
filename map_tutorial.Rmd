@@ -1,10 +1,14 @@
 ---
 title: "Choropleth Map"
+output:
+  html_document:  
+    toc: true  
+    toc_float: true 
 ---
 
 This is a brief overview on how to create custom choropleth maps in R using Shapefiles. Some basic knowledge of R is assumed.
 
-<div style="text-align:left"><span style="color:black; font-size:1em;">Step 1: Load the libraries</span></div>
+##Step 1: Load the libraries
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -16,7 +20,7 @@ library(rgdal) # turning a shapefile into a dataframe
 library(plyr) # for "join" function
 ```
 
-<div style="text-align:left"><span style="color:black; font-size:1em;">Step 2: Get your data</span></div>
+##Step 2: Get your data
 
 You will need: </p>
 a) The data you want to map </p>
@@ -28,7 +32,7 @@ The aim of the game is to convert the Shapefile into a dataframe, and join with 
 In this example, we are going to use Active Lives Survey data from the Sport England Active Lives dataset (datasets available on the [UK Data Archive](https://beta.ukdataservice.ac.uk/datacatalogue/studies/#!?Search=active%20lives%20survey&Page=1&Rows=10&Sort=1&DateFrom=440&DateTo=2019)). This data goes down to a Local Authority level (England only). The entire dataset is available as an spss file, but I have converted the query output (Local Authority by Activity Level) to .csv.</p> 
 We will use the Shapefile from [data.gov.uk](https://data.gov.uk/dataset/45a1aaed-503a-4259-bd3e-27ce2ddc7b16/local-authority-districts-december-2016-super-generalised-clipped-boundaries-in-the-uk). This contains data beyond our interest (i.e. beyond England) so we will need to do a bit of data cleaning once we have created our joined dataframe.
 
-<div style="text-align:left"><span style="color:black; font-size:1em;">Step 3: Read in your data</span></div>
+## Step 3: Read in your data
 We now read in our csv file of Active Lives data.
 ```{r}
 df <- read.csv("input/Active_Lives_Data.csv", header = TRUE) # read in the file and keep the headers
@@ -57,7 +61,7 @@ map.df <- map.df[, !duplicated(colnames(map.df))] # remove dupe cols
 
 We now have a dataframe that we can use with ggplot2. Here is an excellent ggplot [cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf). </p>
 
-<div style="text-align:left"><span style="color:black; font-size:1em;">Step 4: ggplot!</span></div>
+##Step 4: ggplot!
 We can use *geom_polygon* to create our map, and strip out axes, gridlines etc. using  *theme*.
 
 ```{r echo=TRUE, message=FALSE, fig.align='center', warning=FALSE, fig.height= 6, fig.width=5}
