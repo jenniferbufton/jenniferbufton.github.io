@@ -458,9 +458,50 @@ div.tocify {
 </div>
 
 
-<div id="placeholder" class="section level2">
-<h2>Placeholder</h2>
+<p>These examples all use the “diamonds” dataset from the ggplot package.</p>
+<div id="font" class="section level2">
+<h2>Font</h2>
+<p>The <code>extrafont</code> package enables the use of custom fonts in the plots. To install a new font, download the TrueType font file, and follow the instructions here.</p>
+</div>
+<div id="scatter-plot" class="section level2">
+<h2>Scatter Plot</h2>
 <p><img src="Cookbook_files/figure-html/Scatter-1.png" width="672" /></p>
+<p>Depending on your data, other additional changes may be required to “neaten” the plot. For example, we can reformat the y axis labels to display them as currency:</p>
+<pre class="r"><code># Scatter plot
+d &lt;- diamonds
+plot.point.v1 &lt;- ggplot(data = d)+ 
+  geom_point(aes(x = carat, y = price, color = cut)) + 
+  theme(text = element_text(family = &quot;Norwester&quot;, color = &quot;#5F5F5F&quot;), 
+        plot.title=element_text(size=14,family = &quot;Norwester&quot;, face=&quot;bold&quot;, hjust = 0.5), 
+        panel.background  =  element_blank() ) + 
+  labs( x= &quot;Carat&quot;, y = &quot;Price&quot;, title = &quot;Price by Carat&quot;, fill = &quot;Cut&quot;) +
+  scale_color_manual(values= se_colour) +
+  scale_y_continuous(labels = scales::dollar_format(prefix = &quot;£&quot;)) # reformat scales to currency
+plot.point.v1</code></pre>
+<p><img src="Cookbook_files/figure-html/Scatter2-1.png" width="672" /> ## Boxplot</p>
+<pre class="r"><code>plot.box &lt;- ggplot(data = d)+ 
+  geom_boxplot(aes(x = carat, y = price, fill = cut)) + 
+  theme(text = element_text(family = &quot;Norwester&quot;, color = &quot;#5F5F5F&quot;), 
+  plot.title=element_text(size=14,family = &quot;Norwester&quot;, face=&quot;bold&quot;, hjust = 0.5),
+        panel.grid = element_blank()) + 
+  labs( x= &quot;Carat&quot;, y = &quot;Price&quot;, title = &quot;Price by Carat&quot;, fill = &quot;Cut&quot;) +
+  scale_fill_manual(values=se_colour) +
+  scale_y_continuous(labels = scales::dollar_format(prefix = &quot;£&quot;)) # reformat scales to currency
+plot.box</code></pre>
+<p><img src="Cookbook_files/figure-html/Boxplot-1.png" width="672" /></p>
+</div>
+<div id="histogram" class="section level2">
+<h2>Histogram</h2>
+<pre class="r"><code>plot.hist &lt;- ggplot(data = d)+ 
+  geom_histogram(aes(x = price, fill = cut), binwidth = 200) + 
+  theme(text = element_text(family = &quot;Norwester&quot;, color = &quot;#5F5F5F&quot;), 
+  plot.title=element_text(size=14,family = &quot;Norwester&quot;, face=&quot;bold&quot;, hjust = 0.5),
+        panel.grid = element_blank()) + 
+  labs( x= &quot;Price&quot;, y = &quot;Number of Diamonds&quot;, title = &quot;Price by Cut&quot;, fill = &quot;Cut&quot;) +
+  scale_fill_manual(values=se_colour)+
+  scale_x_continuous(labels = scales::dollar_format(prefix = &quot;£&quot;)) # reformat scales to currency
+plot.hist</code></pre>
+<p><img src="Cookbook_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 
 
