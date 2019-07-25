@@ -13,11 +13,11 @@ library(extrafont)
 ```
 
 
-These examples all use the "diamonds" dataset from the ggplot package.
+These examples all use datasets within R: `diamonds` from `ggplot2` and `iris` from base R.
 
-## Font
+## Installing Fonts
 
-The `extrafont` package enables the use of custom fonts in the plots. To install a new font, download the TrueType font file, and follow the instructions here.
+The `extrafont` package enables the use of custom fonts in the plots. To install a new font in Windows 10, download the TrueType font file, and follow the instructions [here](https://www.cnet.com/how-to/how-to-add-remove-and-modify-fonts-in-windows-10/).
 
 ## Scatter Plot
 
@@ -37,35 +37,39 @@ plot.point <- ggplot(data = d)+
 plot.point
 ```
 
-Depending on your data, other additional changes may be required to "neaten" the plot. For example, we can reformat the y axis labels to display them as currency:
+Depending on your data, additional changes may be required to "neaten" the plot. For example, we can reformat the y axis labels to display them as currency, and add `geom_smooth` to help show patterns:
 
 ```{r Scatter2, echo=TRUE}
 
 # Scatter plot
 d <- diamonds
 plot.point.v1 <- ggplot(data = d)+ 
-  geom_point(aes(x = carat, y = price, color = cut)) + 
+  geom_point(aes(x = carat, y = price, color = cut)) +
+  geom_smooth(aes(x = carat, y = price, color = cut)) +
   theme(text = element_text(family = "Norwester", color = "#5F5F5F"), 
         plot.title=element_text(size=14,family = "Norwester", face="bold", hjust = 0.5), 
         panel.background  =  element_blank() ) + 
   labs( x= "Carat", y = "Price", title = "Price by Carat", fill = "Cut") +
   scale_color_manual(values= se_colour) +
-  scale_y_continuous(labels = scales::dollar_format(prefix = "£")) # reformat scales to currency
+  scale_y_continuous(labels = scales::dollar_format(prefix = "Â£")) # reformat scales to currency
 plot.point.v1
 
 ```
+
 ## Boxplot
 
-```{r Boxplot, echo=TRUE}
+A boxplot displays the distribution of a continuous variable. It visualises five summary statistics (the median, two hinges and two whiskers), and all "outlying" points individually.
 
+```{r Boxplot, echo=TRUE}
+d <- diamonds
 plot.box <- ggplot(data = d)+ 
   geom_boxplot(aes(x = carat, y = price, fill = cut)) + 
   theme(text = element_text(family = "Norwester", color = "#5F5F5F"), 
   plot.title=element_text(size=14,family = "Norwester", face="bold", hjust = 0.5),
-        panel.grid = element_blank()) + 
+  panel.background  =  element_blank()) +
   labs( x= "Carat", y = "Price", title = "Price by Carat", fill = "Cut") +
   scale_fill_manual(values=se_colour) +
-  scale_y_continuous(labels = scales::dollar_format(prefix = "£")) # reformat scales to currency
+  scale_y_continuous(labels = scales::dollar_format(prefix = "Â£")) # reformat scales to currency
 plot.box
 
 
@@ -73,16 +77,40 @@ plot.box
 
 ## Histogram
 
+Using `geom_hist`, we can plot the distribution of a variable. Altering the "binwidth" argument changes the size of the bins, and thus the level of detail.
+
 ```{r}
+d <- iris 
+d <- subset(d, d$Species == "setosa") # only look at "Setosa" species from the Iris dataset
+
 plot.hist <- ggplot(data = d)+ 
-  geom_histogram(aes(x = price, fill = cut), binwidth = 200) + 
+  geom_histogram(aes(x = Petal.Length), binwidth = 0.2, fill = "#5D4086") + 
   theme(text = element_text(family = "Norwester", color = "#5F5F5F"), 
   plot.title=element_text(size=14,family = "Norwester", face="bold", hjust = 0.5),
-        panel.grid = element_blank()) + 
-  labs( x= "Price", y = "Number of Diamonds", title = "Price by Cut", fill = "Cut") +
-  scale_fill_manual(values=se_colour)+
-  scale_x_continuous(labels = scales::dollar_format(prefix = "£")) # reformat scales to currency
+        panel.background  =  element_blank()) + 
+  labs( x= "Sepal Length",  y = "Number of Observations",  title = "Setosa Petal Length Distribution") 
 plot.hist
+
+```
+
+## Bar chart
+
+We can use either `geom_bar` or `geom_col` for bar charts. For the former, the height of the bars relate to *the number of cases* per group and for the latter, the height represents the *values*. 
+
+
+```{r bar}
+d <- diamonds  # only look at "Setosa" species from the Iris dataset
+
+plot.bar <- ggplot(data = d)+ 
+  geom_col(aes(x = cut, y = price, fill = cut)) + 
+  theme(text = element_text(family = "Norwester", color = "#5F5F5F"), 
+  plot.title=element_text(size=14,family = "Norwester", face="bold", hjust = 0.5),
+        panel.background  =  element_blank(),
+  legend.position = "none") + # remove legend
+  labs( x= "Cut",  y = "Value of Diamonds",  title = "Value of Diamonds by Cut") +
+  scale_fill_manual(values=se_colour) +
+  scale_y_continuous(labels = scales::dollar_format(prefix = "Â£"))
+plot.bar
 
 ```
 

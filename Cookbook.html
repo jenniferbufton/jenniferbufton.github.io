@@ -458,19 +458,20 @@ div.tocify {
 </div>
 
 
-<p>These examples all use the “diamonds” dataset from the ggplot package.</p>
-<div id="font" class="section level2">
-<h2>Font</h2>
-<p>The <code>extrafont</code> package enables the use of custom fonts in the plots. To install a new font, download the TrueType font file, and follow the instructions here.</p>
+<p>These examples all use datasets within R: <code>diamonds</code> from <code>ggplot2</code> and <code>iris</code> from base R.</p>
+<div id="installing-fonts" class="section level2">
+<h2>Installing Fonts</h2>
+<p>The <code>extrafont</code> package enables the use of custom fonts in the plots. To install a new font in Windows 10, download the TrueType font file, and follow the instructions <a href="https://www.cnet.com/how-to/how-to-add-remove-and-modify-fonts-in-windows-10/">here</a>.</p>
 </div>
 <div id="scatter-plot" class="section level2">
 <h2>Scatter Plot</h2>
 <p><img src="Cookbook_files/figure-html/Scatter-1.png" width="672" /></p>
-<p>Depending on your data, other additional changes may be required to “neaten” the plot. For example, we can reformat the y axis labels to display them as currency:</p>
+<p>Depending on your data, additional changes may be required to “neaten” the plot. For example, we can reformat the y axis labels to display them as currency, and add <code>geom_smooth</code> to help show patterns:</p>
 <pre class="r"><code># Scatter plot
 d &lt;- diamonds
 plot.point.v1 &lt;- ggplot(data = d)+ 
-  geom_point(aes(x = carat, y = price, color = cut)) + 
+  geom_point(aes(x = carat, y = price, color = cut)) +
+  geom_smooth(aes(x = carat, y = price, color = cut)) +
   theme(text = element_text(family = &quot;Norwester&quot;, color = &quot;#5F5F5F&quot;), 
         plot.title=element_text(size=14,family = &quot;Norwester&quot;, face=&quot;bold&quot;, hjust = 0.5), 
         panel.background  =  element_blank() ) + 
@@ -478,12 +479,18 @@ plot.point.v1 &lt;- ggplot(data = d)+
   scale_color_manual(values= se_colour) +
   scale_y_continuous(labels = scales::dollar_format(prefix = &quot;£&quot;)) # reformat scales to currency
 plot.point.v1</code></pre>
-<p><img src="Cookbook_files/figure-html/Scatter2-1.png" width="672" /> ## Boxplot</p>
-<pre class="r"><code>plot.box &lt;- ggplot(data = d)+ 
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<p><img src="Cookbook_files/figure-html/Scatter2-1.png" width="672" /></p>
+</div>
+<div id="boxplot" class="section level2">
+<h2>Boxplot</h2>
+<p>A boxplot displays the distribution of a continuous variable. It visualises five summary statistics (the median, two hinges and two whiskers), and all “outlying” points individually.</p>
+<pre class="r"><code>d &lt;- diamonds
+plot.box &lt;- ggplot(data = d)+ 
   geom_boxplot(aes(x = carat, y = price, fill = cut)) + 
   theme(text = element_text(family = &quot;Norwester&quot;, color = &quot;#5F5F5F&quot;), 
   plot.title=element_text(size=14,family = &quot;Norwester&quot;, face=&quot;bold&quot;, hjust = 0.5),
-        panel.grid = element_blank()) + 
+  panel.background  =  element_blank()) +
   labs( x= &quot;Carat&quot;, y = &quot;Price&quot;, title = &quot;Price by Carat&quot;, fill = &quot;Cut&quot;) +
   scale_fill_manual(values=se_colour) +
   scale_y_continuous(labels = scales::dollar_format(prefix = &quot;£&quot;)) # reformat scales to currency
@@ -492,16 +499,35 @@ plot.box</code></pre>
 </div>
 <div id="histogram" class="section level2">
 <h2>Histogram</h2>
-<pre class="r"><code>plot.hist &lt;- ggplot(data = d)+ 
-  geom_histogram(aes(x = price, fill = cut), binwidth = 200) + 
+<p>Using <code>geom_hist</code>, we can plot the distribution of a variable. Altering the “binwidth” argument changes the size of the bins, and thus the level of detail.</p>
+<pre class="r"><code>d &lt;- iris 
+d &lt;- subset(d, d$Species == &quot;setosa&quot;) # only look at &quot;Setosa&quot; species from the Iris dataset
+
+plot.hist &lt;- ggplot(data = d)+ 
+  geom_histogram(aes(x = Petal.Length), binwidth = 0.2, fill = &quot;#5D4086&quot;) + 
   theme(text = element_text(family = &quot;Norwester&quot;, color = &quot;#5F5F5F&quot;), 
   plot.title=element_text(size=14,family = &quot;Norwester&quot;, face=&quot;bold&quot;, hjust = 0.5),
-        panel.grid = element_blank()) + 
-  labs( x= &quot;Price&quot;, y = &quot;Number of Diamonds&quot;, title = &quot;Price by Cut&quot;, fill = &quot;Cut&quot;) +
-  scale_fill_manual(values=se_colour)+
-  scale_x_continuous(labels = scales::dollar_format(prefix = &quot;£&quot;)) # reformat scales to currency
+        panel.background  =  element_blank()) + 
+  labs( x= &quot;Sepal Length&quot;,  y = &quot;Number of Observations&quot;,  title = &quot;Setosa Petal Length Distribution&quot;) 
 plot.hist</code></pre>
 <p><img src="Cookbook_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="bar-chart" class="section level2">
+<h2>Bar chart</h2>
+<p>We can use either <code>geom_bar</code> or <code>geom_col</code> for bar charts. For the former, the height of the bars relate to <em>the number of cases</em> per group and for the latter, the height represents the <em>values</em>.</p>
+<pre class="r"><code>d &lt;- diamonds  # only look at &quot;Setosa&quot; species from the Iris dataset
+
+plot.bar &lt;- ggplot(data = d)+ 
+  geom_col(aes(x = cut, y = price, fill = cut)) + 
+  theme(text = element_text(family = &quot;Norwester&quot;, color = &quot;#5F5F5F&quot;), 
+  plot.title=element_text(size=14,family = &quot;Norwester&quot;, face=&quot;bold&quot;, hjust = 0.5),
+        panel.background  =  element_blank(),
+  legend.position = &quot;none&quot;) + # remove legend
+  labs( x= &quot;Cut&quot;,  y = &quot;Value of Diamonds&quot;,  title = &quot;Value of Diamonds by Cut&quot;) +
+  scale_fill_manual(values=se_colour) +
+  scale_y_continuous(labels = scales::dollar_format(prefix = &quot;£&quot;))
+plot.bar</code></pre>
+<p><img src="Cookbook_files/figure-html/bar-1.png" width="672" /></p>
 </div>
 
 
