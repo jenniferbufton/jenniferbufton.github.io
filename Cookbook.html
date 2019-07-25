@@ -484,7 +484,8 @@ plot.point.v1</code></pre>
 </div>
 <div id="boxplot" class="section level2">
 <h2>Boxplot</h2>
-<p>A boxplot displays the distribution of a continuous variable. It visualises five summary statistics (the median, two hinges and two whiskers), and all “outlying” points individually.</p>
+<p>A boxplot shows the distribution of a variable. It gives you the median, the quartiles, and all outliers (shown as individual dots).</p>
+<p>You can do lots more to a boxplot, rotating it horizontally, adding the notch argument to add confidence intervals around the median, adding the mean, etc. See <code>tidyverse</code> <a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">documentation</a> for more details</p>
 <pre class="r"><code>d &lt;- diamonds
 plot.box &lt;- ggplot(data = d)+ 
   geom_boxplot(aes(x = carat, y = price, fill = cut)) + 
@@ -515,7 +516,7 @@ plot.hist</code></pre>
 <div id="bar-chart" class="section level2">
 <h2>Bar chart</h2>
 <p>We can use either <code>geom_bar</code> or <code>geom_col</code> for bar charts. For the former, the height of the bars relate to <em>the number of cases</em> per group and for the latter, the height represents the <em>values</em>.</p>
-<pre class="r"><code>d &lt;- diamonds  # only look at &quot;Setosa&quot; species from the Iris dataset
+<pre class="r"><code>d &lt;- diamonds  
 
 plot.bar &lt;- ggplot(data = d)+ 
   geom_col(aes(x = cut, y = price, fill = cut)) + 

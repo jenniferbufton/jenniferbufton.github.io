@@ -58,7 +58,9 @@ plot.point.v1
 
 ## Boxplot
 
-A boxplot displays the distribution of a continuous variable. It visualises five summary statistics (the median, two hinges and two whiskers), and all "outlying" points individually.
+A boxplot shows the distribution of a variable. It gives you the median, the quartiles, and all outliers (shown as individual dots).
+
+You can do lots more to a boxplot, rotating it horizontally, adding the notch argument to add confidence intervals around the median, adding the mean, etc. See `tidyverse` [documentation](https://ggplot2.tidyverse.org/reference/geom_boxplot.html) for more details
 
 ```{r Boxplot, echo=TRUE}
 d <- diamonds
@@ -99,7 +101,7 @@ We can use either `geom_bar` or `geom_col` for bar charts. For the former, the h
 
 
 ```{r bar}
-d <- diamonds  # only look at "Setosa" species from the Iris dataset
+d <- diamonds  
 
 plot.bar <- ggplot(data = d)+ 
   geom_col(aes(x = cut, y = price, fill = cut)) + 
