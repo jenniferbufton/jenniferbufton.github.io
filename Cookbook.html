@@ -463,6 +463,12 @@ div.tocify {
 <h2>Installing Fonts</h2>
 <p>The <code>extrafont</code> package enables the use of custom fonts in the plots. To install a new font in Windows 10, download the TrueType font file, and follow the instructions <a href="https://www.cnet.com/how-to/how-to-add-remove-and-modify-fonts-in-windows-10/">here</a>.</p>
 </div>
+<div id="brand-colours" class="section level2">
+<h2>Brand colours</h2>
+<p>use <code>se_colour</code> in plots to assign the Sport England house colours.</p>
+<pre class="r"><code># Set colour scheme
+se_colour &lt;- c(&quot;#E79AB5&quot;, &quot;#B8345C&quot;, &quot;#8CCDD6&quot;, &quot;#43A8B6&quot;, &quot;#00818F&quot;, &quot;#C1DC9A&quot;, &quot;#7ABB40&quot;, &quot;#5D4086&quot;) # colours for use in plot</code></pre>
+</div>
 <div id="scatter-plot" class="section level2">
 <h2>Scatter Plot</h2>
 <p><img src="Cookbook_files/figure-html/Scatter-1.png" width="672" /></p>
@@ -511,7 +517,7 @@ plot.hist &lt;- ggplot(data = d)+
         panel.background  =  element_blank()) + 
   labs( x= &quot;Sepal Length&quot;,  y = &quot;Number of Observations&quot;,  title = &quot;Setosa Petal Length Distribution&quot;) 
 plot.hist</code></pre>
-<p><img src="Cookbook_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="Cookbook_files/figure-html/hist-1.png" width="672" /></p>
 </div>
 <div id="bar-chart" class="section level2">
 <h2>Bar chart</h2>

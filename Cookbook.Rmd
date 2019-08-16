@@ -19,11 +19,18 @@ These examples all use datasets within R: `diamonds` from `ggplot2` and `iris` f
 
 The `extrafont` package enables the use of custom fonts in the plots. To install a new font in Windows 10, download the TrueType font file, and follow the instructions [here](https://www.cnet.com/how-to/how-to-add-remove-and-modify-fonts-in-windows-10/).
 
+## Brand colours
+
+use `se_colour` in plots to assign the Sport England house colours. 
+
+```{r brand, echo=TRUE, message=FALSE, warning=FALSE}
+# Set colour scheme
+se_colour <- c("#E79AB5", "#B8345C", "#8CCDD6", "#43A8B6", "#00818F", "#C1DC9A", "#7ABB40", "#5D4086") # colours for use in plot
+```
+
 ## Scatter Plot
 
 ```{r Scatter, echo=FALSE, message=FALSE, warning=FALSE}
-# Set colour scheme
-se_colour <- c("#E79AB5", "#B8345C", "#8CCDD6", "#43A8B6", "#00818F", "#C1DC9A", "#7ABB40", "#5D4086") # colours for use in plot
 
 # Scatter plot
 d <- diamonds
@@ -81,7 +88,7 @@ plot.box
 
 Using `geom_hist`, we can plot the distribution of a variable. Altering the "binwidth" argument changes the size of the bins, and thus the level of detail.
 
-```{r}
+```{r hist}
 d <- iris 
 d <- subset(d, d$Species == "setosa") # only look at "Setosa" species from the Iris dataset
 
@@ -115,4 +122,3 @@ plot.bar <- ggplot(data = d)+
 plot.bar
 
 ```
-
