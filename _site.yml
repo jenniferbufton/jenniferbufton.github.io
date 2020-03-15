@@ -5,24 +5,28 @@ navbar:
   left:
     - icon: fa-home
       href: index.html
-    - icon: fa-graduation-cap
-      href: map_tutorial.html
-      menu:
-        - text: "Visualisations"
-        - text: "Choropleth Map"
-          href: map_tutorial.html
-        - text: "Leaflet Map"
-          href: Leaflet.html
-        - text: "Collapsible Tree"
-          href: tree.html
-        - text: "---------"
-        - text: "Wrangling"
-        - text: "Page C"
-          href: index.html
-        - text: "Page D"
-          href: index.html
     - icon: fa-book
       href: Cookbook.html
+    - icon: fa-map-marked-alt
+      href: index.html
+      menu:
+       - text: "Reading in Spatial Data"
+         href: shapefile_add.html
+       - text: "Choropleth Map Tutorial"
+         href: map_tutorial.html
+       - text: "Cartogram Tutorial"
+         href: Cartogram.html
+       - text: "Leaflet Tutorial"
+         href: Leaflet.html
+    - icon: fa-paint-brush 
+      href: index.html
+      menu:
+       - text: "Shiny App"
+         href: Shiny.html
+       - text: "Power BI"
+         href: PowerBI.html
+    - icon: fa-terminal
+          
     
   right:
     - icon: fa-github fa-lg
