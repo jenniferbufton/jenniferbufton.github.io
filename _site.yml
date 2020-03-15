@@ -16,16 +16,17 @@ navbar:
          href: map_tutorial.html
        - text: "Cartogram Tutorial"
          href: Cartogram.html
+       - text: "Hex Map Tutorial"
+         href: Hex.html
        - text: "Leaflet Tutorial"
          href: Leaflet.html
-    - icon: fa-paint-brush 
+    - icon: fa-line-chart 
       href: index.html
       menu:
        - text: "Shiny App"
          href: Shiny.html
        - text: "Power BI"
          href: PowerBI.html
-    - icon: fa-terminal
           
     
   right:
