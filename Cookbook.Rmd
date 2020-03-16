@@ -37,29 +37,14 @@ plot_colour_gradient <- c("#003F69", alpha("#003F69", 0.8), alpha("#003F69", 0.6
 ```
 
 ## Scatter Plot
-```{r scatter, echo=TRUE, fig.align='center', message=FALSE, warning=FALSE}
 
+```{r Scatter, echo=TRUE, fig.align= 'center', message=FALSE, warning=FALSE}
 # Scatter plot
 d <- diamonds # using diamonds dataset
 
-plot.point <- ggplot(data = d)+ 
-  geom_point(aes(x = carat, y = price, color = cut)) + 
-  theme(text = element_text(family = "Poppins", color = "#5F5F5F"), 
-        plot.title=element_text(size=14,family = "Poppins", face="bold", hjust = 0.5),
-        panel.background  =  element_blank()) + 
-  labs( x= "Carat", y = "Price", title = "Price by Carat") +
-  scale_color_manual(values= plot_colour_inverse, name = 'Cut') 
-plot.point
-```
-
-
-Depending on your data, additional changes may be required to "neaten" the plot. For example, we can reformat the y axis labels to display them as currency, and add `geom_smooth` to help show patterns:
-
-```{r Scatter2, echo=TRUE, fig.align= 'center', message=FALSE, warning=FALSE}
-
 # Scatter plot
 d <- diamonds
-plot.point.v1 <- ggplot(data = d)+ 
+plot.point <- ggplot(data = d)+ 
   geom_point(aes(x = carat, y = price, color = cut)) +
   geom_smooth(aes(x = carat, y = price, color = cut)) +
   theme(text = element_text(family = "Poppins", color = "#5F5F5F"), 
@@ -68,9 +53,10 @@ plot.point.v1 <- ggplot(data = d)+
   labs( x= "Carat", y = "Price", title = "Price by Carat") +
   scale_color_manual(values= plot_colour_inverse, name = 'Cut') +
   scale_y_continuous(labels = scales::dollar_format(prefix = "£")) # reformat scales to currency
-plot.point.v1
+plot.point
 
 ```
+Depending on the data, additional changes may be required to "neaten" the plot. For example, we can reformat the y axis labels to display them as currency, and add `geom_smooth` to help show patterns.
 
 ## Boxplot
 
