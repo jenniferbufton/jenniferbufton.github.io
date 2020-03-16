@@ -516,8 +516,8 @@ div.tocify {
 <h2>Installing Fonts</h2>
 <p>The <code>extrafont</code> package enables the use of custom fonts in the plots. To install a new font in Windows 10, download the TrueType font file, and follow the instructions <a href="https://www.cnet.com/how-to/how-to-add-remove-and-modify-fonts-in-windows-10/">here</a>.</p>
 </div>
-<div id="brand-colours" class="section level2">
-<h2>Brand colours</h2>
+<div id="colours" class="section level2">
+<h2>Colours</h2>
 <p>use <code>plot_colour</code> in plots to assign the colours.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Set colour scheme</span></a>
 <a class="sourceLine" id="cb2-2" title="2">plot_colour &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="st">&quot;#e41b4a&quot;</span>, <span class="st">&quot;#0072d6&quot;</span>, <span class="st">&quot;#a4569c&quot;</span>, <span class="st">&quot;#00a881&quot;</span>, <span class="st">&quot;#ff6105&quot;</span>)</a>
@@ -527,15 +527,16 @@ div.tocify {
 <div id="scatter-plot" class="section level2">
 <h2>Scatter Plot</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Scatter plot</span></a>
-<a class="sourceLine" id="cb3-2" title="2">d &lt;-<span class="st"> </span>diamonds</a>
-<a class="sourceLine" id="cb3-3" title="3">plot.point &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> d)<span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carat, <span class="dt">y =</span> price, <span class="dt">color =</span> cut)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;Poppins&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;#5F5F5F&quot;</span>), </a>
-<a class="sourceLine" id="cb3-6" title="6">        <span class="dt">plot.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">14</span>,<span class="dt">family =</span> <span class="st">&quot;Poppins&quot;</span>, <span class="dt">face=</span><span class="st">&quot;bold&quot;</span>, <span class="dt">hjust =</span> <span class="fl">0.5</span>), </a>
-<a class="sourceLine" id="cb3-7" title="7">        <span class="dt">panel.background  =</span>  <span class="kw">element_blank</span>() ) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="st">  </span><span class="kw">labs</span>( <span class="dt">x=</span> <span class="st">&quot;Carat&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Price&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Price by Carat&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values=</span> plot_colour_inverse, <span class="dt">name =</span> <span class="st">&#39;Cut&#39;</span>) </a>
-<a class="sourceLine" id="cb3-10" title="10">plot.point</a></code></pre></div>
+<a class="sourceLine" id="cb3-2" title="2">d &lt;-<span class="st"> </span>diamonds <span class="co"># using diamonds dataset</span></a>
+<a class="sourceLine" id="cb3-3" title="3"></a>
+<a class="sourceLine" id="cb3-4" title="4">plot.point &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> d)<span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carat, <span class="dt">y =</span> price, <span class="dt">color =</span> cut)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;Poppins&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;#5F5F5F&quot;</span>), </a>
+<a class="sourceLine" id="cb3-7" title="7">        <span class="dt">plot.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">14</span>,<span class="dt">family =</span> <span class="st">&quot;Poppins&quot;</span>, <span class="dt">face=</span><span class="st">&quot;bold&quot;</span>, <span class="dt">hjust =</span> <span class="fl">0.5</span>),</a>
+<a class="sourceLine" id="cb3-8" title="8">        <span class="dt">panel.background  =</span>  <span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="st">  </span><span class="kw">labs</span>( <span class="dt">x=</span> <span class="st">&quot;Carat&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Price&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Price by Carat&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values=</span> plot_colour_inverse, <span class="dt">name =</span> <span class="st">&#39;Cut&#39;</span>) </a>
+<a class="sourceLine" id="cb3-11" title="11">plot.point</a></code></pre></div>
 <p><img src="Cookbook_files/figure-html/scatter-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Depending on your data, additional changes may be required to “neaten” the plot. For example, we can reformat the y axis labels to display them as currency, and add <code>geom_smooth</code> to help show patterns:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># Scatter plot</span></a>
@@ -544,7 +545,7 @@ div.tocify {
 <a class="sourceLine" id="cb4-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carat, <span class="dt">y =</span> price, <span class="dt">color =</span> cut)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb4-5" title="5"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carat, <span class="dt">y =</span> price, <span class="dt">color =</span> cut)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb4-6" title="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;Poppins&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;#5F5F5F&quot;</span>), </a>
-<a class="sourceLine" id="cb4-7" title="7">        <span class="dt">plot.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">14</span>,<span class="dt">family =</span> <span class="st">&quot;Poppins&quot;</span>, <span class="dt">face=</span><span class="st">&quot;bold&quot;</span>, <span class="dt">hjust =</span> <span class="fl">0.5</span>), </a>
+<a class="sourceLine" id="cb4-7" title="7">        <span class="dt">plot.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">14</span>,<span class="dt">family =</span> <span class="st">&quot;Poppins&quot;</span>, <span class="dt">face=</span><span class="st">&quot;bold&quot;</span>, <span class="dt">hjust =</span> <span class="fl">0.5</span>),</a>
 <a class="sourceLine" id="cb4-8" title="8">        <span class="dt">panel.background  =</span>  <span class="kw">element_blank</span>() ) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb4-9" title="9"><span class="st">  </span><span class="kw">labs</span>( <span class="dt">x=</span> <span class="st">&quot;Carat&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Price&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Price by Carat&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb4-10" title="10"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values=</span> plot_colour_inverse, <span class="dt">name =</span> <span class="st">&#39;Cut&#39;</span>) <span class="op">+</span></a>

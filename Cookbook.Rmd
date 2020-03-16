@@ -25,7 +25,7 @@ library(extrafont)
 
 The `extrafont` package enables the use of custom fonts in the plots. To install a new font in Windows 10, download the TrueType font file, and follow the instructions [here](https://www.cnet.com/how-to/how-to-add-remove-and-modify-fonts-in-windows-10/).
 
-## Brand colours
+## Colours
 
 use `plot_colour` in plots to assign the colours. 
 
@@ -40,12 +40,13 @@ plot_colour_gradient <- c("#003F69", alpha("#003F69", 0.8), alpha("#003F69", 0.6
 ```{r scatter, echo=TRUE, fig.align='center', message=FALSE, warning=FALSE}
 
 # Scatter plot
-d <- diamonds
+d <- diamonds # using diamonds dataset
+
 plot.point <- ggplot(data = d)+ 
   geom_point(aes(x = carat, y = price, color = cut)) + 
   theme(text = element_text(family = "Poppins", color = "#5F5F5F"), 
-        plot.title=element_text(size=14,family = "Poppins", face="bold", hjust = 0.5), 
-        panel.background  =  element_blank() ) + 
+        plot.title=element_text(size=14,family = "Poppins", face="bold", hjust = 0.5),
+        panel.background  =  element_blank()) + 
   labs( x= "Carat", y = "Price", title = "Price by Carat") +
   scale_color_manual(values= plot_colour_inverse, name = 'Cut') 
 plot.point
@@ -62,7 +63,7 @@ plot.point.v1 <- ggplot(data = d)+
   geom_point(aes(x = carat, y = price, color = cut)) +
   geom_smooth(aes(x = carat, y = price, color = cut)) +
   theme(text = element_text(family = "Poppins", color = "#5F5F5F"), 
-        plot.title=element_text(size=14,family = "Poppins", face="bold", hjust = 0.5), 
+        plot.title=element_text(size=14,family = "Poppins", face="bold", hjust = 0.5),
         panel.background  =  element_blank() ) + 
   labs( x= "Carat", y = "Price", title = "Price by Carat") +
   scale_color_manual(values= plot_colour_inverse, name = 'Cut') +

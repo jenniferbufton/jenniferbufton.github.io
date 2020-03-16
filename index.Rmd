@@ -1,4 +1,5 @@
 ---
+title: " "
 output:
   html_document:  
     theme: flatly
@@ -7,7 +8,7 @@ output:
 
 <center><h3><h3> </center>
 
-<center>This site is a collection of `R Code` for data visualisations from bar charts to hex maps, as well as examples of [outputs](https://jenniferbufton.github.io/Shiny.html) such as Shiny apps</center> 
+<center>This site is a collection of `R Code` I find useful for data visualisations: from bar charts to hex maps, as well as examples of [outputs](https://jenniferbufton.github.io/Shiny.html) such as R Shiny apps</center> 
 
 ---
 
