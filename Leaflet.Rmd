@@ -16,6 +16,7 @@ library(dplyr)
 library(tidyr)
 library(extrafont)
 library(leaflet)
+library(leaflet.esri)
 library(kableExtra)
 
 #access url
@@ -44,6 +45,8 @@ newdata4$genderRestriction[is.na(newdata4$genderRestriction)] <- "Mixed-Session"
 
 mses <- subset(newdata4, genderRestriction == "Mixed-Session") 
 wses <- subset(newdata4, genderRestriction == "Women-only Session")
+
+df <- read.csv('input/All_Lottery_18_20_latlon.csv', header = TRUE)
 
 ```
 
@@ -89,3 +92,58 @@ leaflet() %>% addTiles() %>%
 
 ```
 
+# Additional features
+There are numerous other features available in the `Leaflet` package, such as:
+* Changing the basemap tile 
+* Adding popups 
+* Adding a legend
+* Adding Esri feature layers using the `leaflet.esri` package
+
+The Esri feature layers enables a user to overlay the dataset with additonal geographic data, such as green space, or Index of Multiple Deprivation. The below example uses Sport England Lottery Awards data:
+```{r esri, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE, fig.align='center'}
+
+df_19 <- df %>%
+  filter(Year == "2019/20")
+
+pal <- colorFactor(palette = c('#fff7f3','#fde0dd','#fcc5c0','#fa9fb5','#f768a1','#dd3497','#ae017e','#7a0177','#49006a', '#49006a'), domain = df$Index.of.Multiple.Deprivation.Decile)
+
+m <- leaflet()%>%
+  addTiles(group = "OSM")%>%
+  addProviderTiles(providers$Esri.WorldGrayCanvas, group = "Esri Gray") %>%
+  addCircleMarkers(data= df_19, ~Longitude, ~Latitude, 
+                   popup = paste("Year:", df_19$Year, "<br>",
+                                 "Amount:", "£", formatC(as.numeric(df$Amount.granted), big.mark = ",", digits = 10),  "<br>",
+                                 "LSOA Name:", df_19$`LSOA.Name`), 
+                   color = ~pal(df_19$Index.of.Multiple.Deprivation.Decile),
+                   fillOpacity = ~pal(Index.of.Multiple.Deprivation.Decile),
+                   radius = ~sqrt(Amount.granted)* 0.005) %>%
+  addLegend("bottomright", pal = pal, values = df_19$Index.of.Multiple.Deprivation.Decile, title = "IMD",
+            opacity = 1)%>%
+  addEsriFeatureLayer(url = "https://services3.arcgis.com/ivmBBrHfQfDnDf8Q/ArcGIS/rest/services/Indices_of_Multiple_Deprivation_(IMD)_2019/FeatureServer/0",
+                     weight = 1, color = "grey",
+                     labelProperty = paste("LSOA01NM"), 
+                     group = "IMD 2019 Layer",
+                     labelOptions = labelOptions(textsize = "12px"),
+                     popupProperty = JS("function(feature) { return L.Util.template(\"<h3>IMD Decile: {IMDDec0}</h3><hr /><p>This LSOA is {LSOA01NM} and the IMD Rank is {IMDRank0}. The total population is {TotPop} (excluding pensioners)\", feature.properties);}")) %>%
+  
+   addEsriFeatureLayer(url = "https://ons-inspire.esriuk.com/arcgis/rest/services/Administrative_Boundaries/Local_Authority_Districts_December_2017_Boundaries_WGS84/MapServer/3",
+                     weight = 1, color = "grey",
+                     labelProperty = paste("lad17nm"), 
+                     group = "LA 2017 Layer",
+                     labelOptions = labelOptions(textsize = "12px")) %>%
+addEsriFeatureLayer(url = "https://services5.arcgis.com/piNGxor37zqmvRAm/ArcGIS/rest/services/OS_Open_Greenspace/FeatureServer/1",
+                     weight = 1, color = "grey",
+                     labelProperty = paste("function_"), 
+                     group = "Green Space",
+                     labelOptions = labelOptions(textsize = "12px"))%>%
+  addLayersControl(
+    baseGroups = c("OSM", "Esri Gray"),
+    overlayGroups = c("LA 2017 Layer", "IMD 2019 Layer", "Green Space"),
+    options = layersControlOptions(collapsed = FALSE)
+  )
+
+m %>% hideGroup(c ("LA 2017 Layer", "IMD 2019 Layer", "Green Space"))
+
+
+
+```

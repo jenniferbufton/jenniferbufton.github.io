@@ -11,8 +11,11 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This is a Power BI report showing levels of activity by demographic at a Local Authority Level. This report was created by using Sport England's [Active Lives Survey](https://www.sportengland.org/know-your-audience/data/active-lives) data.
+This is a Power BI report showing levels of activity and attitudes toward sport and physical activity during the COVID-19 lockdown by demographic. This report 
 
-<center><iframe src = "https://app.powerbi.com/view?r=eyJrIjoiMTU3ODIyOTgtMDQwYS00NzQ3LWE2MDEtNTg5MDQ0NTE3Yzc1IiwidCI6ImM4YWEwNDdiLTE2NmYtNDg1NS05MGVhLWI4YWI5ZDg3MmQxZCIsImMiOjh9" height=600px width=800px /></center>
+<center><iframe width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiM2UxYTNiNDktNzA0MS00MzRkLWJkYTYtODZjYTg0M2U0Mzk4IiwidCI6ImM4YWEwNDdiLTE2NmYtNDg1NS05MGVhLWI4YWI5ZDg3MmQxZCIsImMiOjh9&pageName=ReportSectionb48be188b7c837c14848" frameborder="0" allowFullScreen="true"></iframe></center>
 
 
+This report uses data pre-calculated using a KNIME workflow. This involves looping through each dataset to perform a weighted crosstab for each demographic category and question combination.
+
+<center><img src="images/KNIME.png" width="300px"/></center>
