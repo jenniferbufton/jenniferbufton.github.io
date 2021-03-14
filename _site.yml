@@ -5,6 +5,17 @@ navbar:
   left:
     - icon: fa-home
       href: index.html
+    - icon: fa-file-code
+      href: cv.html
+    - icon: fa-line-chart 
+      href: index.html
+      menu:
+       - text: "Shiny App"
+         href: Shiny.html
+       - text: "Power BI"
+         href: PowerBI.html
+       - text: Python App
+         href: python.html
     - icon: fa-book
       href: Cookbook.html
     - icon: fa-map-marked-alt
@@ -20,14 +31,6 @@ navbar:
          href: Hex.html
        - text: "Leaflet Tutorial"
          href: Leaflet.html
-    - icon: fa-line-chart 
-      href: index.html
-      menu:
-       - text: "Shiny App"
-         href: Shiny.html
-       - text: "Power BI"
-         href: PowerBI.html
-          
     
   right:
     - icon: fa-github fa-lg

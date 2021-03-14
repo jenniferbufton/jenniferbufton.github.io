@@ -1,0 +1,20 @@
+---
+title: "My Curriculum Vitae"
+output:
+  html_document:  
+    theme: flatly
+    highlight: tango
+---
+<center>
+<div style="width:400px; height:300px">
+
+[![Click to download](./input/CV_20210106.jpg "Click to download")](https://raw.githubusercontent.com/jenniferbufton/jenniferbufton.github.io/master/input/CV_20210106.pdf)
+
+</div>
+</center>
+ 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+

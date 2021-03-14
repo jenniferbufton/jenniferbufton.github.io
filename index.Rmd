@@ -8,8 +8,11 @@ output:
 
 <center><h3><h3> </center>
 
-<center>This site is a collection of `R Code` I find useful for data visualisations: from bar charts to hex maps, as well as examples of [outputs](https://jenniferbufton.github.io/Shiny.html) such as R Shiny apps</center> 
+<center>This website includes a showcase of [applications](https://jenniferbufton.github.io/Shiny.html) developed in Shiny, Python, and Power BI.
 
+It also contains my [CV](https://jenniferbufton.github.io/cv.html), and a collection of `R code snippets` I find useful for data visualisation.
+
+</center> 
 ---
 
 <center><img src="images/Blog_JB.JPG" width="400px"/></center>

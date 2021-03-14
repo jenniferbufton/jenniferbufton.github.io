@@ -1,0 +1,26 @@
+---
+title: "Flood Warning Application"
+output:
+  html_document:  
+    theme: flatly
+    highlight: tango
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is a an app developed in Python and hosted on `streamlit.io`. It was created to inform funding decisions - and for targeted communications to organisations in flooded areas - for Sport England's Flood Relief funding programme.
+
+The app calls the Environment Agency for live funding data (including the polygons of the flooded areas) to enable plotting using `Folium`.
+
+See full details at [GitHub](https://github.com/jenniferbufton/streamlit_flood)
+
+<iframe src = "https://share.streamlit.io/jenniferbufton/streamlit_flood/main/streamlit_flood.py" height=1000px width=1000px />
+
+
+```{r python, eval=FALSE, fig.align='center', fig.height=20, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
+knitr::include_url("https://share.streamlit.io/jenniferbufton/streamlit_flood/main/streamlit_flood.py")
+```
+
