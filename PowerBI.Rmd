@@ -11,11 +11,11 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This is a Power BI report showing levels of activity and attitudes toward sport and physical activity during the COVID-19 lockdown by demographic. This report 
+This is a Power BI report showing levels of activity and attitudes toward sport and physical activity during the COVID-19 lockdown. This report is also available via the Sport England website.
 
-<center><iframe width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiM2UxYTNiNDktNzA0MS00MzRkLWJkYTYtODZjYTg0M2U0Mzk4IiwidCI6ImM4YWEwNDdiLTE2NmYtNDg1NS05MGVhLWI4YWI5ZDg3MmQxZCIsImMiOjh9&pageName=ReportSectionb48be188b7c837c14848" frameborder="0" allowFullScreen="true"></iframe></center>
+<center><iframe width="900" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiM2UxYTNiNDktNzA0MS00MzRkLWJkYTYtODZjYTg0M2U0Mzk4IiwidCI6ImM4YWEwNDdiLTE2NmYtNDg1NS05MGVhLWI4YWI5ZDg3MmQxZCIsImMiOjh9&pageName=ReportSectionb48be188b7c837c14848" frameborder="0" allowFullScreen="true"></iframe></center>
 
 
-This report uses data pre-calculated using a KNIME workflow. This involves looping through each dataset to perform a weighted crosstab for each demographic category and question combination.
+This report uses data that has been pre-calculated using a KNIME workflow. This involves looping through each dataset to perform a weighted crosstab for each demographic category and question combination, and outputting a Power BI dataset.
 
 <center><img src="images/KNIME.png" width="300px"/></center>

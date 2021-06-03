@@ -10,7 +10,7 @@ output:
 
 <center>This website includes a showcase of [applications](https://jenniferbufton.github.io/Shiny.html) developed in Shiny, Python, and Power BI.
 
-It also contains my [CV](https://jenniferbufton.github.io/cv.html), and a collection of `R code snippets` I find useful for data visualisation.
+It also contains my [CV](https://jenniferbufton.github.io/cv.html) for a quick overview of my core skills. 
 
 </center> 
 ---
